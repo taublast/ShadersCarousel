@@ -1,5 +1,9 @@
 # .NET MAUI Shaders Carousel Demo
 
+
+https://github.com/user-attachments/assets/bfba4b57-06ff-467e-803b-a540a696509d
+
+
 **UNDER CONSTRUCTION**
 
 Among some stunning features SkiaSharp version 3 introduced the latest [SKSL syntax](https://skia.org/docs/user/sksl/).
@@ -10,4 +14,4 @@ An important possibility is now to port existing GLSL shaders into SKSL , what w
 
 **UNDER CONSTRUCTION**
 
-[DrawnUI](https://github.com/taublast/DrawnUi.Maui) preview nuget was used to buld and render this app on a single Skia canvas.
+[DrawnUI](https://github.com/taublast/DrawnUi.Maui) preview nuget was used to render on Skia canvas.
