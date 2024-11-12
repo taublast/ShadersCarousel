@@ -1,10 +1,5 @@
 # .NET MAUI Shaders Carousel Demo
 
-
- 
-
-**UNDER CONSTRUCTION**
-
 https://github.com/user-attachments/assets/6171f4c6-e32f-4194-9c01-10e9a0ba7cb7
 
 __Still working on this.__
@@ -18,4 +13,4 @@ An important new possibility is to port existing GLSL shaders into the modern SK
 
 [DrawnUI](https://github.com/taublast/DrawnUi.Maui) preview nuget allowed to use SkiaSharp intuitively.
 
-This app will not run with hardware-acceleration on iOS and Catalyst simulators as SkiaSharp is not currently supporting this.
+DO NOT run this app on iOS and Catalyst simulators as SkiaSharp is not currently supporting hardware-acceleration for them.
