@@ -103,10 +103,10 @@
 
                             <draw:SkiaLottie
                                 AutoPlay="False"
-                                ColorTint="Purple"
                                 HorizontalOptions="Center"
                                 LockRatio="1"
                                 Repeat="-1"
+                                ColorTint="Purple"
                                 Source="Lottie/iosloader.json"
                                 Tag="Loader"
                                 VerticalOptions="Center"

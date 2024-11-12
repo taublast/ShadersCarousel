@@ -19,12 +19,11 @@ namespace ShadersCarouselDemo
                 BindingContext = this;
 
                 _mock = new MockDataProvider();
-
                 var data = _mock.GetRandomItems(10);
-
                 Items.AddRange(data);
 
                 MakeSlowerRatio = 2.1;
+                AutoLoop = true;
             }
             catch (Exception e)
             {
