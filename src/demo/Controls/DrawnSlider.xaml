@@ -71,8 +71,6 @@
                 Margin="4"
                 BackgroundColor="{StaticResource ColorPrimary}"
                 HorizontalOptions="Fill"
-                StrokeColor="{StaticResource ColorPrimaryDark}"
-                StrokeWidth="1"
                 Type="Circle"
                 VerticalOptions="Fill">
                 <draw:SkiaShape.Shadows>
@@ -82,7 +80,7 @@
                         Opacity="0.5"
                         X="1"
                         Y="1"
-                        Color="{StaticResource ColorPrimaryDark}" />
+                        Color="Black" />
 
                 </draw:SkiaShape.Shadows>
 

@@ -1,5 +1,6 @@
 ﻿using DrawnUi.Maui.Draw;
 using Microsoft.Extensions.Logging;
+using System.Globalization;
 
 namespace ShadersCarouselDemo
 {
@@ -30,6 +31,11 @@ namespace ShadersCarouselDemo
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+
+            var culture = CultureInfo.CreateSpecificCulture("en");
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.CurrentCulture = culture;
 
             return builder.Build();
         }

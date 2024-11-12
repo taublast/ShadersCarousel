@@ -10,6 +10,18 @@ namespace ShadersCarouselDemo.Controls.Carousel;
 /// </summary>
 public class DemoCarousel : ShadersCarousel
 {
+    //public override ISkiaGestureListener OnSkiaGestureEvent(SkiaGesturesParameters args, GestureEventProcessingInfo apply)
+    //{
+
+    //    if (args.Type == TouchActionResult.Tapped)
+    //    {
+    //        MainThread.BeginInvokeOnMainThread(SelectFIle);
+    //        return this;
+    //    }
+
+    //    return base.OnSkiaGestureEvent(args, apply);
+    //}
+
     public DemoCarousel()
     {
         RecyclingTemplate = RecyclingTemplate.Disabled; //todo make it work without this
@@ -22,18 +34,6 @@ public class DemoCarousel : ShadersCarousel
         if (Transitions == null)
             SetupSources();
     }
-
-    //public override ISkiaGestureListener OnSkiaGestureEvent(SkiaGesturesParameters args, GestureEventProcessingInfo apply)
-    //{
-
-    //    if (args.Type == TouchActionResult.Tapped)
-    //    {
-    //        MainThread.BeginInvokeOnMainThread(SelectFIle);
-    //        return this;
-    //    }
-
-    //    return base.OnSkiaGestureEvent(args, apply);
-    //}
 
     /// <summary>
     /// some adapted shaders from https://github.com/gl-transitions/gl-transitions

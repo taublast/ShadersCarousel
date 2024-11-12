@@ -31,9 +31,54 @@ namespace ShadersCarouselDemo
                 Super.DisplayException(this, e);
             }
         }
+
+        public ICommand CommandRefreshData
+        {
+            get
+            {
+                return new Command(async (context) =>
+                {
+                    try
+                    {
+                        await Task.Delay(2000); //simulate some.. :)
+                        var data = _mock.GetRandomItems(10);
+                        Items.Clear();
+                        Items.AddRange(data);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                    finally
+                    {
+                        IsRefreshing = false;
+                    }
+                });
+            }
+        }
+
         private readonly MockDataProvider _mock;
 
         public ObservableRangeCollection<SimpleItemViewModel> Items { get; } = new();
+
+        private bool _IsRefreshing;
+        public bool IsRefreshing
+        {
+            get
+            {
+                return _IsRefreshing;
+            }
+            set
+            {
+                if (_IsRefreshing != value)
+                {
+                    _IsRefreshing = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
 
         private int _SelectedIndex;
         public int SelectedIndex

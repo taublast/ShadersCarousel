@@ -74,20 +74,48 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill">
 
-                <draw:SkiaLabel
-                    DropShadowColor="#9880e5"
-                    DropShadowSize="1"
-                    FontFamily="FontTextBold"
+                <draw:SkiaLayout
+                    Margin="2"
                     HorizontalOptions="Center"
-                    StrokeColor="#332B0B98"
-                    StrokeWidth="1"
-                    Text="Built with DrawnUI for .NET MAUI"
-                    TextColor="#FFFFFF"
-                    UseCache="Operations" />
+                    UseCache="Operations">
+                    <draw:SkiaLabel
+                        Margin="0"
+                        FontAttributes="Bold, Italic"
+                        FontFamily="FontTextBold"
+                        FontSize="13"
+                        HorizontalOptions="Center"
+                        StrokeColor="#33770077"
+                        StrokeWidth="1"
+                        Text="Built with DrawnUI for .NET MAUI"
+                        TextColor="#FFFFFF" />
+                </draw:SkiaLayout>
 
                 <draw:SkiaScroll
                     HorizontalOptions="Fill"
+                    IgnoreWrongDirection="True"
+                    IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                    RefreshCommand="{Binding CommandRefreshData}"
+                    RefreshDistanceLimit="100"
+                    RefreshEnabled="True"
+                    RefreshShowDistance="-30"
                     VerticalOptions="Fill">
+
+                    <draw:SkiaScroll.RefreshIndicator>
+                        <controls:AppRefreshIndicator>
+
+                            <draw:SkiaLottie
+                                AutoPlay="False"
+                                ColorTint="Purple"
+                                HorizontalOptions="Center"
+                                LockRatio="1"
+                                Repeat="-1"
+                                Source="Lottie/iosloader.json"
+                                Tag="Loader"
+                                VerticalOptions="Center"
+                                WidthRequest="36" />
+
+                        </controls:AppRefreshIndicator>
+                    </draw:SkiaScroll.RefreshIndicator>
 
                     <draw:SkiaLayout
                         BackgroundColor="Transparent"
@@ -166,12 +194,12 @@
 
                             <!--  GO LEFT  -->
                             <draw:SkiaSvg
+                                Margin="4,0"
                                 draw:AddGestures.CommandTapped="{Binding CommandGoPrev}"
                                 HorizontalOptions="Start"
                                 IsVisible="{Binding Source={x:Reference MainCarousel}, Path=IsAtStart, Converter={x:StaticResource NotConverter}}"
                                 LockRatio="1"
                                 TintColor="#CCCCCCCC"
-                                Margin="4,0"
                                 UseCache="Operations"
                                 VerticalOptions="Center"
                                 WidthRequest="34">
@@ -188,12 +216,12 @@
 
                             <!--  GO RIGHT  -->
                             <draw:SkiaSvg
+                                Margin="4,0"
                                 draw:AddGestures.CommandTapped="{Binding CommandGoNext}"
                                 HorizontalOptions="End"
                                 IsVisible="{Binding Source={x:Reference MainCarousel}, Path=IsAtEnd, Converter={x:StaticResource NotConverter}}"
                                 LockRatio="1"
                                 TintColor="#CCCCCCCC"
-                                Margin="4,0"
                                 UseCache="Operations"
                                 VerticalOptions="Center"
                                 WidthRequest="34">
@@ -251,6 +279,8 @@
                                                 DropShadowSize="1"
                                                 FontAttributes="Bold, Italic"
                                                 FontSize="13"
+                                                StrokeColor="#33000000"
+                                                StrokeWidth="1"
                                                 Text="{Binding Source={x:Reference MainCarousel}, Path=ShaderName}"
                                                 TextColor="White"
                                                 VerticalOptions="Center" />
