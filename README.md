@@ -11,6 +11,8 @@ Can now use [official samples](https://shaders.skia.org/) etc, to create shaders
 
 An important new possibility is to port existing GLSL shaders into the modern SKSL, what was done in this case. Adapted GLSL shaders from https://github.com/gl-transitions/gl-transitions were used.
 
-[DrawnUI](https://github.com/taublast/DrawnUi.Maui) preview nuget allowed to use SkiaSharp intuitively.
+[DrawnUI](https://github.com/taublast/DrawnUi.Maui) preview nuget allowed to use SkiaSharp intuitively on a hardware-accelerated Skia canvas.
 
-DO NOT run this app on iOS and Catalyst simulators as SkiaSharp is not currently supporting hardware-acceleration for them.
+Do not run this app on iOS and Catalyst simulators as SkiaSharp is not supporting their hardware acceleration at this time.
+
+One could use the code to serve as a stand-alone control inside a usual MAUI app, just reference/initialize DrawnUI nuget then put the canvas with a drawn carousel anywhere. You could ship shader files inside the app `Raw` folder or even as strings in code or from resources.
