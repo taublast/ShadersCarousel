@@ -21,7 +21,6 @@
         HardwareAcceleration="Enabled"
         HorizontalOptions="Fill"
         Opacity="0.001"
-        Tag="MainPage"
         VerticalOptions="Fill">
 
         <draw:Canvas.Resources>
@@ -92,7 +91,6 @@
 
                 <draw:SkiaScroll
                     HorizontalOptions="Fill"
-                    IgnoreWrongDirection="True"
                     IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                     RefreshCommand="{Binding CommandRefreshData}"
                     RefreshDistanceLimit="100"
@@ -118,10 +116,8 @@
                     </draw:SkiaScroll.RefreshIndicator>
 
                     <draw:SkiaLayout
-                        BackgroundColor="Transparent"
                         HorizontalOptions="Fill"
                         Spacing="0"
-                        Tag="Content"
                         Type="Column"
                         UseCache="None">
 
@@ -135,8 +131,7 @@
                                 ItemsSource="{Binding Items}"
                                 SelectedIndex="{Binding SelectedIndex}"
                                 Tag="Carousel"
-                                TransitionChanged="OnTransitionChanged"
-                                VerticalOptions="Start">
+                                TransitionChanged="OnTransitionChanged">
 
                                 <draw:SkiaLayout.ItemTemplate>
                                     <DataTemplate x:DataType="models:SimpleItemViewModel">
@@ -180,14 +175,11 @@
                             <!--  carousel indicators  -->
                             <indicators:CustomIndicators
                                 Margin="0,6"
-                                BackgroundColor="Transparent"
                                 HorizontalOptions="Center"
-                                IsVisible="True"
                                 SelectedIndex="{Binding Source={x:Reference MainCarousel}, Path=SafeIndex}"
                                 Spacing="6"
                                 Tag="Indicators"
                                 TotalEnabled="{Binding Source={x:Reference MainCarousel}, Path=ChildrenTotal}"
-                                TranslationY="0"
                                 UseCache="GPU"
                                 VerticalOptions="Start"
                                 ZIndex="2" />
@@ -372,8 +364,6 @@
 
 
             </draw:SkiaLayout>
-
-            <!--<controls:ButtonToRoot />-->
 
             <draw:SkiaLabelFps
                 Margin="0,0,4,24"
