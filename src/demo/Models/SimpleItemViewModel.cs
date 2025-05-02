@@ -1,4 +1,6 @@
-﻿namespace ShadersCarousel.Models;
+﻿using AppoMobi.Specials;
+
+namespace ShadersCarousel.Models;
 
 public class SimpleItemViewModel
 {
@@ -7,3 +9,5 @@ public class SimpleItemViewModel
     public string Description { get; set; }
     public string Banner { get; set; }
 }
+
+ 

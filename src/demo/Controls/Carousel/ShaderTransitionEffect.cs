@@ -1,4 +1,4 @@
-using DrawnUi.Maui.Draw;
+using DrawnUi.Draw;
 using SkiaSharp;
 
 namespace ShadersCarouselDemo.Controls.Carousel;
@@ -82,6 +82,8 @@ public class ShaderTransitionEffect : ShaderDoubleTexturesEffect, IStateEffect, 
             control.ApplyTargetControl((SkiaControl)newvalue);
         }
     }
+    
+    #region TargetCache
 
     protected override SKShader GetSecondaryTexture()
     {
@@ -99,10 +101,6 @@ public class ShaderTransitionEffect : ShaderDoubleTexturesEffect, IStateEffect, 
     }
 
     private bool _secondarySourceSet;
-
-
-
-    #region TargetCache
 
     void SetSecondaryFromTarget()
     {

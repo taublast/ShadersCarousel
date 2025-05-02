@@ -1,4 +1,4 @@
-using DrawnUi.Maui.Draw;
+using DrawnUi.Draw;
 
 namespace ShadersCarouselDemo.Controls.Carousel.Indicators;
 

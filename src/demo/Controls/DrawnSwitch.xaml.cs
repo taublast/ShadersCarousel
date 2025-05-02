@@ -1,4 +1,4 @@
-using DrawnUi.Maui.Draw;
+using DrawnUi.Draw;
 
 namespace ShadersCarouselDemo.Controls;
 
@@ -9,7 +9,7 @@ public partial class DrawnSwitch : SkiaSwitch
         InitializeComponent();
     }
 
-    protected void OnTapped(object sender, SkiaGesturesParameters skiaGesturesParameters)
+    protected void OnTapped(object sender, ControlTappedEventArgs controlTappedEventArgs)
     {
         IsToggled = !IsToggled;
     }

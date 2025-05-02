@@ -204,18 +204,14 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
     </Style>
 
-    <Style
-        x:Key="Headline"
-        TargetType="Label">
+    <Style x:Key="Headline" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" />
         <Setter Property="FontSize" Value="32" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
     </Style>
 
-    <Style
-        x:Key="SubHeadline"
-        TargetType="Label">
+    <Style x:Key="SubHeadline" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource MidnightBlue}, Dark={StaticResource White}}" />
         <Setter Property="FontSize" Value="24" />
         <Setter Property="HorizontalOptions" Value="Center" />
@@ -417,16 +413,12 @@
         </Setter>
     </Style>
 
-    <Style
-        ApplyToDerivedTypes="True"
-        TargetType="Page">
+    <Style ApplyToDerivedTypes="True" TargetType="Page">
         <Setter Property="Padding" Value="0" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
     </Style>
 
-    <Style
-        ApplyToDerivedTypes="True"
-        TargetType="Shell">
+    <Style ApplyToDerivedTypes="True" TargetType="Shell">
         <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
         <Setter Property="Shell.ForegroundColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource ColorSecondaryDarkText}}" />
         <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource ColorSecondaryDarkText}}" />

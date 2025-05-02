@@ -1,9 +1,12 @@
-using DrawnUi.Maui.Controls;
-using DrawnUi.Maui.Draw;
+using DrawnUi.Controls;
+using DrawnUi.Draw;
+using ShadersCarousel.Models;
 using SkiaSharp;
+using System.Diagnostics;
 using System.Numerics;
 
 namespace ShadersCarouselDemo.Controls.Carousel;
+
 
 /// <summary>
 /// Sublclassed SkiaCarousel showing a shader effect for transitions
@@ -12,13 +15,14 @@ public class ShadersCarousel : SkiaCarousel
 {
     public ShadersCarousel()
     {
+        RecyclingTemplate = RecyclingTemplate.Disabled; //todo make it work without this. We now use non-recycled to be able to attach existing cells that are same for every index at all times to our effect.
+
         Effect = new()
         {
             ShaderSource = ShaderFilename,
             ShaderTemplate = @"Shaders\transitions\_template.sksl"
         };
     }
-
 
     private string _ShaderFilename = @"Shaders\transitions\fade.sksl";
     public string ShaderFilename
@@ -45,7 +49,7 @@ public class ShadersCarousel : SkiaCarousel
 
     private bool effectAttached;
 
-    public override void Render(SkiaDrawingContext context, SKRect destination, float scale)
+    public override void Render(DrawingContext context)
     {
         if (Effect != null && !effectAttached)
         {
@@ -54,7 +58,7 @@ public class ShadersCarousel : SkiaCarousel
             VisualEffects.Add(Effect); //all the magic will be done with this effect
         }
 
-        base.Render(context, destination, scale);
+        base.Render(context);
     }
 
     protected virtual void OnFromToChanged()
@@ -64,30 +68,45 @@ public class ShadersCarousel : SkiaCarousel
 
     public event EventHandler FromToChanged;
 
-
-    public virtual void SetupFromTo()
+    public virtual bool SetupFromTo()
     {
-        if (Effect == null)
-            return;
-
         IndexToLast = IndexTo;
         IndexFromLast = IndexFrom;
 
-        var viewFrom = ChildrenFactory.GetChildAt(IndexFrom);
-        var viewTo = ChildrenFactory.GetChildAt(IndexTo);
+        var viewFrom = ChildrenFactory.GetViewForIndex(IndexFrom);
+        var viewTo = ChildrenFactory.GetViewForIndex(IndexTo);
 
         if (viewFrom == null || viewTo == null)
         {
             throw new ApplicationException("Unexpected null");
         }
 
-        Effect.ControlFrom = viewFrom;
-        Effect.ControlTo = viewTo;
+        if (Effect == null)
+            return false;
+
+        var modelSet = viewTo.BindingContext as SimpleItemViewModel;
+        if (modelSet != null)
+        {
+            Effect.ControlFrom = viewFrom;
+            Effect.ControlTo = viewTo;
+            return true;
+        }
+
+        return false;
 
         //Debug.WriteLine($"Set new sources {IndexFrom} ({viewFrom.BindingContext}) <=> {IndexTo} ({viewTo.BindingContext}) at progress {progress:0.00}, scroll {ScrollProgress:0.00}");
     }
 
     private bool initialized;
+    public override ScaledSize Measure(float widthConstraint, float heightConstraint, float scale)
+    {
+        initialized = false;
+
+        Trace.WriteLine($"Carousel re-measured'");
+
+        return base.Measure(widthConstraint, heightConstraint, scale);
+    }
+
 
     protected override void OnChildrenInitialized()
     {
@@ -100,8 +119,6 @@ public class ShadersCarousel : SkiaCarousel
 
         base.OnChildrenInitialized();
     }
-
-
 
     protected override void OnScrollProgressChanged()
     {
@@ -123,9 +140,9 @@ public class ShadersCarousel : SkiaCarousel
                     IndexTo = currentIndex + 1;
                     IndexFrom = currentIndex;
 
-                    if (IndexToLast != IndexTo || IndexFromLast != IndexFrom)
+                    if (!initialized || IndexToLast != IndexTo || IndexFromLast != IndexFrom)
                     {
-                        SetupFromTo();
+                        initialized = SetupFromTo();
                     }
 
                 }
@@ -137,13 +154,10 @@ public class ShadersCarousel : SkiaCarousel
                 OnFromToChanged();
             }
 
-            initialized = true;
-
             Effect.Progress = progress;
 
             Effect.Update();
         }
-
     }
 
 
@@ -151,8 +165,11 @@ public class ShadersCarousel : SkiaCarousel
     //to skip default slides animation via translation, not calling base
     protected override void AnimateVisibleChild(SkiaControl view, Vector2 position)
     {
+        if (Effect == null)
+        {
+            base.AnimateVisibleChild(view, position);
+        }
     }
-
 
     private int IndexFrom = -1;
     private int IndexTo = -1;

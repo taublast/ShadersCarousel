@@ -1,6 +1,7 @@
-using DrawnUi.Maui.Draw;
-using DrawnUi.Maui.Internals;
+using DrawnUi.Draw;
+using DrawnUi.Internals;
 using System.Windows.Input;
+using ShadersCarousel.Models;
 
 namespace ShadersCarouselDemo.Controls.Carousel;
 
@@ -24,7 +25,7 @@ public class DemoCarousel : ShadersCarousel
 
     public DemoCarousel()
     {
-        RecyclingTemplate = RecyclingTemplate.Disabled; //todo make it work without this
+       
     }
 
     public override void OnParentChanged(IDrawnBase newvalue, IDrawnBase oldvalue)
@@ -88,7 +89,7 @@ public class DemoCarousel : ShadersCarousel
     private LinearDirectionType animatingTo;
 
 
-    protected override void OnTransitionChanged()
+    public override void OnTransitionChanged()
     {
         base.OnTransitionChanged();
 
@@ -350,7 +351,7 @@ public class DemoCarousel : ShadersCarousel
         return Transitions[index];
     }
 
-    public async Task<ISelectableOption> PresentSelection(IEnumerable<ISelectableOption> options,
+    public async Task<SelectableAction> PresentSelection(IEnumerable<SelectableAction> options,
         string title = null, string cancel = null)
     {
         if (string.IsNullOrEmpty(title))

@@ -1,5 +1,5 @@
-using DrawnUi.Maui.Controls;
-using DrawnUi.Maui.Draw;
+using DrawnUi.Controls;
+using DrawnUi.Draw;
 
 namespace ShadersCarouselDemo.Controls;
 
@@ -12,15 +12,12 @@ public class AppRefreshIndicator : RefreshIndicator
 
     }
 
-    public override void SetDragRatio(float ratio)
+    public override void SetDragRatio(float ratio, float ptsScrollOffset, double ptsLimit)
     {
-        base.SetDragRatio(ratio);
+        base.SetDragRatio(ratio, ptsScrollOffset, ptsLimit);
 
         if (FindLoader() && !IsRunning)
         {
-            if (Loader.Animator == null)
-                return; //failed to load source
-
             Loader.Seek(Loader.GetFrameAt(ratio));
         }
     }
