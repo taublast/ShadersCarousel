@@ -122,11 +122,16 @@
                                 x:Name="MainCarousel"
                                 HeightRequest="350"
                                 HorizontalOptions="Fill"
-                                ItemTemplateType="{x:Type carousel:CellCarousel}"
                                 ItemsSource="{Binding Items}"
                                 SelectedIndex="{Binding SelectedIndex}"
                                 Tag="Carousel"
-                                TransitionChanged="OnTransitionChanged" />
+                                TransitionChanged="OnTransitionChanged">
+                                <draw:SkiaLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <carousel:CellCarousel />
+                                    </DataTemplate>
+                                </draw:SkiaLayout.ItemTemplate>
+                            </carousel:DemoCarousel>
 
                             <!--  carousel indicators  -->
                             <indicators:CustomIndicators
@@ -195,6 +200,7 @@
 
                             <!--  Select  -->
                             <draw:SkiaLayout Style="{x:StaticResource SkiaStyleControlContainer}">
+
                                 <draw:SkiaLabel
                                     HorizontalOptions="Fill"
                                     Style="{x:StaticResource SkiaStyleControLabel}"
@@ -225,6 +231,7 @@
 
                                             <draw:SkiaLabel
                                                 DropShadowColor="#33333333"
+                                                MaxLines="1"
                                                 DropShadowSize="1"
                                                 FontAttributes="Bold, Italic"
                                                 FontSize="13"
@@ -308,7 +315,7 @@
                             <draw:SkiaMarkdownLabel
                                 Margin="8,16,8,16"
                                 FontFamily="FontText"
-                                Text="Powered by SkiaSharp v3 🤩"
+                                Text="Powered by SkiaSharp v4 🤩"
                                 TextColor="#88FFFFFF"
                                 UseCache="Operations" />
 

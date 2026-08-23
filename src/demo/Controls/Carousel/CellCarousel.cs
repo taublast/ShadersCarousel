@@ -43,12 +43,12 @@ public class CellCarousel : SkiaLayout
                 VerticalOptions = LayoutOptions.Fill,
                 Aspect = TransformAspect.AspectCover,
                 LoadSourceOnFirstDraw = false, //need to pre-create our cache for using in shader
-                RescalingQuality = SKFilterQuality.Low,
+                RescalingQuality = FilterQuality.Low,
                 Tag="CellImage",
             }.Assign(out Banner)
         };
 
-        this.OnBindingContextSet((me, ctx) =>
+        this.WhenBindingContextSet((me, ctx) =>
         {
             if (ctx is SimpleItemViewModel model)
             {

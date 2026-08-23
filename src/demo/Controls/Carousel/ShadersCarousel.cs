@@ -98,15 +98,15 @@ public class ShadersCarousel : SkiaCarousel
     }
 
     private bool initialized;
-    public override ScaledSize Measure(float widthConstraint, float heightConstraint, float scale)
+
+    public override ScaledSize OnMeasuring(float widthConstraint, float heightConstraint, float scale)
     {
         initialized = false;
 
-        Trace.WriteLine($"Carousel re-measured'");
+        Debug.WriteLine($"Carousel re-measured'");
 
-        return base.Measure(widthConstraint, heightConstraint, scale);
+        return base.OnMeasuring(widthConstraint, heightConstraint, scale);
     }
-
 
     protected override void OnChildrenInitialized()
     {

@@ -13,7 +13,7 @@ public class ShaderTransitionEffect : ShaderDoubleTexturesEffect, IStateEffect, 
 
     public event EventHandler TransitionEnded;
 
-    private PointF _mouse;
+    private System.Drawing.PointF _mouse;
 
     #region IStateEffect
 
