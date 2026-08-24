@@ -1,52 +1,68 @@
-﻿using DrawnUi.Controls;
+using DrawnUi.Controls;
 using DrawnUi.Draw;
 
 namespace ShadersCarouselDemo.Controls;
 
-public class AppRefreshIndicator : RefreshIndicator
+/// <summary>
+/// Drawn pull-to-refresh indicator: Lottie loader inside a white circle (same as the NewsFeed tutorial)
+/// </summary>
+public class AppRefreshIndicator : LottieRefreshIndicator
 {
-    protected SkiaLottie Loader;
+    private const double MySize = 50.0;
+
     public AppRefreshIndicator()
     {
-
-
+        HorizontalOptions = LayoutOptions.Fill;
     }
 
-    public override void SetDragRatio(float ratio, float ptsScrollOffset, double ptsLimit, double ptsTrigger)
+    protected override void CreateDefaultContent()
     {
-        base.SetDragRatio(ratio, ptsScrollOffset, ptsLimit, ptsTrigger);
-
-        if (FindLoader() && !IsRunning)
+        if (this.Views.Count == 0)
         {
-            Loader.Seek(Loader.GetFrameAt(ratio));
-        }
-    }
+            SetDefaultMinimumContentSize(MySize, MySize);
 
-    protected override void OnIsRunningChanged(bool value)
-    {
-        base.OnIsRunningChanged(value);
+            HeightRequest = MySize;
 
-        if (FindLoader())
-        {
-            if (!value)
+            Loader = new()
             {
-                if (Loader.IsPlaying)
-                    Loader.Stop();
-            }
-            else
-            {
-                if (!Loader.IsPlaying)
-                    Loader.Start();
-            }
-        }
-    }
+                Tag = "Loader",
+                AutoPlay = false,
+                Repeat = -1,
+                ColorTint = App.Current.Resources.Get<Color>("ColorPrimary"),
+                HorizontalOptions = LayoutOptions.Fill,
+                VerticalOptions = LayoutOptions.Fill,
+                LockRatio = -1,
+                Source = "Lottie/iosloader.json"
+            };
 
-    bool FindLoader()
-    {
-        if (Loader == null)
-        {
-            Loader = this.FindView<SkiaLottie>("Loader");
+            AddSubView(new SkiaShape()
+            {
+                BackgroundColor = Colors.White,
+                Margin = 5,
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Fill,
+                LockRatio = -1,
+                Type = ShapeType.Circle,
+                Padding = 5,
+                Children =
+                {
+                    Loader
+                },
+                Shadows = new List<SkiaShadow>()
+                {
+                    new SkiaShadow
+                    {
+                        X = 2,
+                        Y = 2,
+                        Blur = 2,
+                        Opacity = 0.3,
+                        Color = Colors.Black
+                    }
+                }
+            });
+
+            if (IsRunning)
+                Loader.Start();
         }
-        return Loader != null;
     }
 }

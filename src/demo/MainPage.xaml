@@ -87,26 +87,13 @@
                     HorizontalOptions="Fill"
                     IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
                     RefreshCommand="{Binding CommandRefreshData}"
-                    RefreshDistanceLimit="100"
+                    RefreshDistanceLimit="120"
                     RefreshEnabled="True"
-                    RefreshShowDistance="-30"
+                    RefreshShowDistance="100"
                     VerticalOptions="Fill">
 
                     <draw:SkiaScroll.RefreshIndicator>
-                        <controls:AppRefreshIndicator>
-
-                            <draw:SkiaLottie
-                                AutoPlay="False"
-                                ColorTint="Purple"
-                                HorizontalOptions="Center"
-                                LockRatio="1"
-                                Repeat="-1"
-                                Source="Lottie/iosloader.json"
-                                Tag="Loader"
-                                VerticalOptions="Center"
-                                WidthRequest="36" />
-
-                        </controls:AppRefreshIndicator>
+                        <controls:AppRefreshIndicator UseCache="Operations" />
                     </draw:SkiaScroll.RefreshIndicator>
 
                     <draw:SkiaLayout
@@ -119,6 +106,7 @@
                         <draw:SkiaLayout HorizontalOptions="Fill">
 
                             <carousel:DemoCarousel
+                                IsLooped="True"
                                 x:Name="MainCarousel"
                                 HeightRequest="350"
                                 HorizontalOptions="Fill"

@@ -1,3 +1,4 @@
+using DrawnUi.Controls;
 using DrawnUi.Draw;
 using DrawnUi.Internals;
 using System.Windows.Input;
@@ -9,7 +10,7 @@ namespace ShadersCarouselDemo.Controls.Carousel;
 /// Subclassed CarouselWithTransitions to add automation to transitions,
 /// totally specific to this demo case
 /// </summary>
-public class DemoCarousel : ShadersCarousel
+public class DemoCarousel : SkiaShaderCarousel
 {
     //public override ISkiaGestureListener OnSkiaGestureEvent(SkiaGesturesParameters args, GestureEventProcessingInfo apply)
     //{
@@ -92,6 +93,7 @@ public class DemoCarousel : ShadersCarousel
     public override void OnTransitionChanged()
     {
         base.OnTransitionChanged();
+        System.IO.File.AppendAllText(@"C:\Users\taubl\AppData\Local\Temp\claude\C--Users-taubl\466f9ab9-898d-421b-8040-8c1b0fd8ec0d\scratchpad\tr.log", $"{DateTime.Now:HH:mm:ss.fff} InTransition={InTransition} pos={CurrentPosition} snap={CurrentSnap} idx={SelectedIndex} focused={IsUserFocused}\n");
 
         if (!InTransition)
         {
@@ -290,7 +292,7 @@ public class DemoCarousel : ShadersCarousel
                 _ShaderFile = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(FullShaderPath));
-                ShaderFilename = FullShaderPath;
+                TransitionShader = FullShaderPath;
             }
         }
     }

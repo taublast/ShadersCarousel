@@ -6,9 +6,9 @@
 
     <Color x:Key="ColorPrimaryLight">#DFD8F7</Color>
     <Color x:Key="ColorPrimary">#ac99ea</Color>
-    <Color x:Key="ColorPrimaryDark">#512BD4</Color>
+    <Color x:Key="ColorPrimaryDark">#7B32AB</Color>
     <Color x:Key="ColorSecondaryDarkText">#9880e5</Color>
-    <Color x:Key="ColorPrimaryDarkest">#2B0B98</Color>
+    <Color x:Key="ColorPrimaryDarkest">#7B32AB</Color>
 
     <Color x:Key="ColorText">#242424</Color>
 

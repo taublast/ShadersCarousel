@@ -5,7 +5,7 @@
     <TargetFrameworks>$(TargetFrameworks);net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
 
     <!--for developper-->
-    <UseNuget>true</UseNuget>
+    <UseNuget>false</UseNuget>
     <SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
 
 		<!-- Note for MacCatalyst:
@@ -77,7 +77,7 @@
 
   <!--usual-->
   <ItemGroup Condition="'$(UseNuget)' == 'true'">
-    <PackageReference Include="DrawnUi.Maui" Version="1.10.5.13" />
+    <PackageReference Include="DrawnUi.Maui" Version="1.10.5.14" />
   </ItemGroup>
 
   <ItemGroup>
