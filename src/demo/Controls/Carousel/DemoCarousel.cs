@@ -93,7 +93,6 @@ public class DemoCarousel : SkiaShaderCarousel
     public override void OnTransitionChanged()
     {
         base.OnTransitionChanged();
-        System.IO.File.AppendAllText(@"C:\Users\taubl\AppData\Local\Temp\claude\C--Users-taubl\466f9ab9-898d-421b-8040-8c1b0fd8ec0d\scratchpad\tr.log", $"{DateTime.Now:HH:mm:ss.fff} InTransition={InTransition} pos={CurrentPosition} snap={CurrentSnap} idx={SelectedIndex} focused={IsUserFocused}\n");
 
         if (!InTransition)
         {
