@@ -4,7 +4,11 @@ https://github.com/user-attachments/assets/6171f4c6-e32f-4194-9c01-10e9a0ba7cb7
 
 Supports **iOS**, **MacCatalyst**, **Android**, **Windows**.
 
-Updated with latest [DrawnUI](https://github.com/taublast/DrawnUi.Maui) nuget. This now runs on Catalyst and iOS simulator too!
+Uses `SkiaShaderCarousel` from DrawnUI for .NET (all platforms, including web and Linux) to create a carousel with shader transitions.
+
+Another sample to see in browser: [fiddle snippet](https://fiddle.drawnui.net/f/Q7TZNWtE).
+
+# About
 
 Among some stunning features, SkiaSharp version 3 brought the latest [SKSL syntax](https://skia.org/docs/user/sksl/). 
 Can now use [official samples](https://shaders.skia.org/) etc, to create shaders for .NET MAUI.
